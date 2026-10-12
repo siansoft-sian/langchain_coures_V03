@@ -7,7 +7,15 @@ authors = [
     { name = "siansoft", email = "siansoft@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "black>=26.10.1",
+    "isort>=9.0.2",
+    "langchain>=1.4.4",
+    "langchain-google-genai>=4.4.1",
+    "langchain-ollama>=1.1.0",
+    "langchain-openai>=1.7.1",
+    "python-dotenv>=1.2.4",
+]
 
 [project.scripts]
 langchain-coures-v03 = "langchain_coures_v03.main:main"
