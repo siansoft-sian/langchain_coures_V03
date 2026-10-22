@@ -5,7 +5,7 @@ Two reusable Python scripts for everyday Git work. They work in any project on m
 They use only Python's built-in modules (Python 3.9+), so there's nothing to install.
 
 | File | What it does |
-|---|---|
+| --- | --- |
 | [create_branch.py](create_branch.py) | Gets the latest `main`, creates a new branch from it, and uploads the branch to GitHub |
 | [save_project.py](save_project.py) | Commits all changes, downloads other people's changes to the branch, and uploads everything |
 | [config.py](config.py) | Your settings: the only file you need to edit |
@@ -16,7 +16,7 @@ They use only Python's built-in modules (Python 3.9+), so there's nothing to ins
 Open `ci/config.py` and check the values:
 
 | Setting | Meaning | Default |
-|---|---|---|
+| --- | --- | --- |
 | `REMOTE` | GitHub remote name (`git remote -v`) | `"origin"` |
 | `MAIN_BRANCH` | Branch new branches start from | `"main"` |
 | `BRANCH_PREFIX` | Added before new branch names, e.g. `"feature/"` | `""` |
@@ -55,6 +55,8 @@ If someone else changed the same lines, the script stops and tells you what to d
 
 ## Cheat sheets
 
-- [GIT_COMMANDS.md](GIT_COMMANDS.md): Git commands and step-by-step recipes
-- [GH_COMMANDS.md](GH_COMMANDS.md): GitHub CLI (`gh`) commands
-- [UV_COMMANDS.md](UV_COMMANDS.md): uv commands
+In the [Git_Gh_UV_Commands](Git_Gh_UV_Commands/) folder:
+
+- [GIT_COMMANDS.md](Git_Gh_UV_Commands/GIT_COMMANDS.md): Git commands and step-by-step recipes
+- [GH_COMMANDS.md](Git_Gh_UV_Commands/GH_COMMANDS.md): GitHub CLI (`gh`) commands
+- [UV_COMMANDS.md](Git_Gh_UV_Commands/UV_COMMANDS.md): uv commands
