@@ -1,13 +1,19 @@
 [project]
 name = "langchain-coures-v03"
 version = "0.1.0"
-description = "Add your description here"
+description = "bulid-search-agent"
 readme = "README.md"
 authors = [
     { name = "siansoft", email = "siansoft@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "langchain>=1.4.7",
+    "langchain-openai>=1.7.2",
+    "langchain-tavily>=0.2.18",
+    "python-dotenv>=1.2.4",
+    "tavily-python>=0.8.5",
+]
 
 [project.scripts]
 langchain-coures-v03 = "langchain_coures_v03:main"
