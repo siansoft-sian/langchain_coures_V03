@@ -26,3 +26,8 @@ __pycache__/
 ci/
 docker/
 project_config.py
+tests/
+.github/
+.pre-commit-config.yaml
+docker-compose.yml
+.env.example

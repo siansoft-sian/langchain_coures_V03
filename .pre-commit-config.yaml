@@ -1,0 +1,25 @@
+# Checks that run automatically before every commit.
+# Turned on by: python ci/setup_project.py   (or: uv run pre-commit install)
+# Run them by hand on all files: uv run pre-commit run --all-files
+#
+# If a check fixes a file, the commit stops. Just commit again
+# (or run python ci/save_project.py again) to include the fixes.
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.2 # keep in step with the ruff version in uv.lock
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files # stop files over 500 KB
+      - id: check-merge-conflict # stop leftover <<<<<<< markers
+      - id: check-yaml
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-private-key # stop private keys being committed

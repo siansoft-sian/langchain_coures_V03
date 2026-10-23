@@ -1,0 +1,39 @@
+# Runs on GitHub every time you push or open a pull request.
+# See the results in the "Actions" tab of the repository.
+
+name: Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint-and-test:
+    name: Lint and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.24"
+
+      - name: Install packages
+        run: uv sync --locked
+
+      - name: Check code style (ruff)
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+
+      - name: Run tests (pytest)
+        run: uv run pytest
+
+  docker:
+    name: Docker build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the image
+        run: python3 docker/build_image.py

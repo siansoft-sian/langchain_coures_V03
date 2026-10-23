@@ -1,11 +1,12 @@
 # CI scripts
 
-Two reusable Python scripts for everyday Git work. They work in any project on macOS, Linux and Windows. Copy this `ci/` folder and [project_config.py](../project_config.py) into the project's main folder, then edit `project_config.py`.
+Reusable Python scripts for project setup and everyday Git work. They work in any project on macOS, Linux and Windows. Copy this `ci/` folder and [project_config.py](../project_config.py) into the project's main folder, then edit `project_config.py`.
 
 They use only Python's built-in modules (Python 3.9+), so there's nothing to install.
 
 | File | What it does |
 | --- | --- |
+| [setup_project.py](setup_project.py) | Sets up the project on a new computer: installs packages, turns on the commit checks and creates `.env` from `.env.example` |
 | [create_branch.py](create_branch.py) | Gets the latest `main`, creates a new branch from it, and uploads the branch to GitHub |
 | [save_project.py](save_project.py) | Commits all changes, downloads other people's changes to the branch, and uploads everything |
 | [../project_config.py](../project_config.py) | Your settings (shared with the `docker/` scripts): the only file you need to edit |
@@ -28,6 +29,12 @@ Open [project_config.py](../project_config.py) in the main folder and check the 
 ## Usage
 
 Run from anywhere inside the project.
+
+Set up the project (first time on a computer, safe to run again):
+
+```bash
+python ci/setup_project.py
+```
 
 Create a branch:
 
@@ -52,6 +59,14 @@ python ci/save_project.py "Add search agent" --main
 In a uv project you can also use `uv run python ci/save_project.py "..."`. On macOS, use `python3` if `python` isn't found.
 
 Add `--help` to either script to see its options.
+
+## Checks before every commit
+
+`setup_project.py` turns on [pre-commit](https://pre-commit.com/), set up in [.pre-commit-config.yaml](../.pre-commit-config.yaml). Before each commit it runs Ruff (lint and format) and a few safety checks, such as blocking private keys and leftover conflict markers.
+
+If a check fixes a file, the commit stops. Run `python ci/save_project.py` again and the fixes are included.
+
+On GitHub, [.github/workflows/check.yml](../.github/workflows/check.yml) runs the same checks plus the tests and a Docker build on every push. See the results in the repository's **Actions** tab.
 
 ## What happens on a conflict
 

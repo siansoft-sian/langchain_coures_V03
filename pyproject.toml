@@ -17,9 +17,23 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "black>=26.10.1",
-    "isort>=9.0.2",
+    "pre-commit>=4.7.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.2",
 ]
 
 [tool.uv]
 package = false
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+# E/W: style errors, F: real bugs (unused names, typos), I: import order,
+# UP: newer Python syntax, B: common bug patterns
+select = ["E", "W", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "ci"]

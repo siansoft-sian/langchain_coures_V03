@@ -1,0 +1,8 @@
+{
+    // VS Code suggests installing these when the project is opened
+    "recommendations": [
+        "ms-python.python",
+        "charliermarsh.ruff",
+        "ms-azuretools.vscode-docker"
+    ]
+}

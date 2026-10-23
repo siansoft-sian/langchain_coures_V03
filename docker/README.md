@@ -58,6 +58,16 @@ python docker/run_container.py bash
 
 On macOS, use `python3` if `python` isn't found. Add `--help` to either script to see its options.
 
+## Docker Compose
+
+For more than one container (for example the app plus a database), use [docker-compose.yml](../docker-compose.yml) in the main folder:
+
+```bash
+docker compose up --build
+```
+
+It has a commented-out Postgres example to start from. Commands are in [DOCKER_COMMANDS.md](DOCKER_COMMANDS.md#docker-compose).
+
 ## Good to know
 
 - **Your code is copied in at build time.** After changing code, run with `--build` so the container gets the new version.

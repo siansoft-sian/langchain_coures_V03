@@ -1,0 +1,34 @@
+# Runs the project (and later, any extra services) with one command:
+#     docker compose up --build
+#
+# Use this when the project needs more than one container, e.g. a database.
+# For a single container, docker/run_container.py does the same job.
+# Versions and names here should match project_config.py.
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        PYTHON_VERSION: "3.13"
+        UV_VERSION: "0.12.24"
+    image: langchain-coures-v03:latest
+    env_file:
+      - path: .env
+        required: false # starts even without .env; main.py then says which keys are missing
+    # ports:
+    #   - "8000:8000"   # uncomment if the app becomes a web API
+
+  # Example of a second service. Uncomment to add a Postgres database:
+  # db:
+  #   image: postgres:17
+  #   environment:
+  #     POSTGRES_PASSWORD: postgres
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - db-data:/var/lib/postgresql/data
+
+# volumes:
+#   db-data:

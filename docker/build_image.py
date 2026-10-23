@@ -40,10 +40,14 @@ def build(no_cache: bool = False) -> None:
     image = f"{config.IMAGE_NAME}:{config.TAG}"
     command = [
         "build",
-        "--file", str(DOCKER_DIR / "Dockerfile"),
-        "--tag", image,
-        "--build-arg", f"PYTHON_VERSION={config.PYTHON_VERSION}",
-        "--build-arg", f"UV_VERSION={config.UV_VERSION}",
+        "--file",
+        str(DOCKER_DIR / "Dockerfile"),
+        "--tag",
+        image,
+        "--build-arg",
+        f"PYTHON_VERSION={config.PYTHON_VERSION}",
+        "--build-arg",
+        f"UV_VERSION={config.UV_VERSION}",
     ]
     if no_cache:
         command.append("--no-cache")

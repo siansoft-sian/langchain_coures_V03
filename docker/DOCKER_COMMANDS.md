@@ -35,6 +35,20 @@ A quick reference for the [Docker](https://docs.docker.com/) commands you'll use
 | `docker stop app` | Stop container `app` |
 | `docker rm app` | Delete the stopped container `app` |
 
+## Docker Compose
+
+[docker-compose.yml](../docker-compose.yml) in the main folder describes every container the project needs. Use it once you have more than one (for example the app and a database).
+
+| Command | What it does |
+| --- | --- |
+| `docker compose up --build` | Build and start everything, showing the output |
+| `docker compose up -d` | Start everything in the background |
+| `docker compose logs -f app` | Follow the output of the `app` service |
+| `docker compose run --rm app bash` | Open a shell in a new `app` container |
+| `docker compose ps` | List the project's running containers |
+| `docker compose down` | Stop and remove the project's containers |
+| `docker compose down -v` | Same, and also delete their saved data (volumes) |
+
 ## Clean up
 
 | Command | What it does |

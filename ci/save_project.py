@@ -54,7 +54,8 @@ def update_main(branch: str) -> None:
         if not git_ok("merge-base", "--is-ancestor", remote_main, "HEAD"):
             fail(
                 f"'{main_branch}' has changes that '{branch}' doesn't have, so it can't be updated cleanly.\n"
-                f"  Bring them in first with: git merge {remote_main}  (or set SYNC_WITH_MAIN = True in project_config.py),\n"
+                f"  Bring them in first with: git merge {remote_main}\n"
+                f"  (or set SYNC_WITH_MAIN = True in project_config.py),\n"
                 f"  then run this script again with --main."
             )
 
@@ -172,7 +173,10 @@ def main() -> None:
             step(f"Merging the latest {config.MAIN_BRANCH} into {branch}")
             git("fetch", config.REMOTE, config.MAIN_BRANCH)
             if git("merge", "--no-edit", f"{config.REMOTE}/{config.MAIN_BRANCH}", check=False).returncode != 0:
-                fail(f"Conflict while merging {config.MAIN_BRANCH}. Fix the files git lists, then run: git add . && git commit")
+                fail(
+                    f"Conflict while merging {config.MAIN_BRANCH}. "
+                    "Fix the files git lists, then run: git add . && git commit"
+                )
 
     # --- 4. Upload -------------------------------------------------------
     step(f"Uploading {branch} to {config.REMOTE}")
