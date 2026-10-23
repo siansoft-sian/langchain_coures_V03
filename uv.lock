@@ -674,10 +674,8 @@ wheels = [
 [[package]]
 name = "langchain-coures-v03"
 version = "0.1.0"
-source = { editable = "." }
+source = { virtual = "." }
 dependencies = [
-    { name = "black" },
-    { name = "isort" },
     { name = "langchain" },
     { name = "langchain-openai" },
     { name = "langchain-tavily" },
@@ -685,15 +683,25 @@ dependencies = [
     { name = "tavily-python" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "black" },
+    { name = "isort" },
+]
+
 [package.metadata]
 requires-dist = [
-    { name = "black", specifier = ">=26.10.1" },
-    { name = "isort", specifier = ">=9.0.2" },
     { name = "langchain", specifier = ">=1.4.7" },
     { name = "langchain-openai", specifier = ">=1.7.2" },
     { name = "langchain-tavily", specifier = ">=0.2.18" },
     { name = "python-dotenv", specifier = ">=1.2.4" },
     { name = "tavily-python", specifier = ">=0.8.5" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "black", specifier = ">=26.10.1" },
+    { name = "isort", specifier = ">=9.0.2" },
 ]
 
 [[package]]

@@ -8,8 +8,6 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "black>=26.10.1",
-    "isort>=9.0.2",
     "langchain>=1.4.7",
     "langchain-openai>=1.7.2",
     "langchain-tavily>=0.2.18",
@@ -17,9 +15,11 @@ dependencies = [
     "tavily-python>=0.8.5",
 ]
 
-[project.scripts]
-langchain-coures-v03 = "langchain_coures_v03:main"
+[dependency-groups]
+dev = [
+    "black>=26.10.1",
+    "isort>=9.0.2",
+]
 
-[build-system]
-requires = ["uv_build>=0.12.24,<0.13.0"]
-build-backend = "uv_build"
+[tool.uv]
+package = false
