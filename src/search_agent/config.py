@@ -1,3 +1,5 @@
+"""Reads the API keys from .env and checks that none are missing."""
+
 import os
 import sys
 
@@ -17,12 +19,3 @@ def check_env() -> None:
             f"✗ Missing keys: {', '.join(missing)}\n"
             "  Add them to .env (see .env.example), or run: python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py"
         )
-
-
-def main() -> None:
-    check_env()
-    print("hello world!")
-
-
-if __name__ == "__main__":
-    main()

@@ -29,4 +29,4 @@ RUN uv sync --locked --no-dev
 RUN useradd --create-home appuser && chown -R appuser /app
 USER appuser
 
-CMD ["python", "src/main.py"]
+CMD ["search-agent"]

@@ -25,7 +25,7 @@ Open [project_config.py](../../project_config.py) in the main folder and check t
 | `PYTHON_VERSION` | Python version inside the image | `"3.13"` |
 | `UV_VERSION` | uv version inside the image | `"0.12.24"` |
 | `ENV_FILE` | File with your API keys, passed in when the container starts | `".env"` |
-| `DEFAULT_COMMAND` | What the container runs when you don't give a command | `["python", "src/main.py"]` |
+| `DEFAULT_COMMAND` | What the container runs when you don't give a command | `["search-agent"]` |
 | `PORTS` | Ports to open, e.g. `["8000:8000"]` for a web API | `[]` |
 
 ## Usage

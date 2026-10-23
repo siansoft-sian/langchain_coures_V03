@@ -238,7 +238,7 @@
             <li>Clone the project and open its folder.</li>
             <li>Run <code>python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py</code> (use <code>python3</code> on macOS if needed).</li>
             <li>Open <code>.env</code> and fill in any keys it says are empty.</li>
-            <li>Run the project with <code>uv run src/main.py</code>.</li>
+            <li>Run the project with <code>uv run search-agent</code>.</li>
           </ol>
         </div>
         <div>
@@ -274,7 +274,7 @@
           <h3>How to add a new key</h3>
           <ol class="steps">
             <li>Add the key with an empty value to <code>.env.example</code>.</li>
-            <li>Add the same name to <code>REQUIRED_KEYS</code> in <code>src/main.py</code>.</li>
+            <li>Add the same name to <code>REQUIRED_KEYS</code> in <code>src/search_agent/config.py</code>.</li>
             <li>Put the real value in your own <code>.env</code>.</li>
             <li>Run <code>uv run pytest</code>. A test checks that the two lists match.</li>
           </ol>
@@ -288,7 +288,7 @@ TAVILY_API_KEY=</code></pre>
           </div>
           <div class="example">
             <span class="label">When a key is missing</span>
-            <pre><code><span class="p">$</span> uv run src/main.py
+            <pre><code><span class="p">$</span> uv run search-agent
 <span class="e">✗ Missing keys: OPENAI_API_KEY</span>
   Add them to .env (see .env.example), or run: python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py</code></pre>
           </div>
@@ -430,7 +430,7 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
         <div>
           <h3>How to</h3>
           <ol class="steps">
-            <li>Run the project: <code>uv run src/main.py</code>.</li>
+            <li>Run the project: <code>uv run search-agent</code>.</li>
             <li>Add a package: <code>uv add &lt;package&gt;</code>.</li>
             <li>Add a tool only for development: <code>uv add --dev &lt;package&gt;</code>.</li>
             <li>After pulling someone else's changes: <code>uv sync</code>.</li>
@@ -442,7 +442,7 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           <div class="example">
             <span class="label">Add a package and use it</span>
             <pre><code><span class="p">$</span> uv add langchain-community
-<span class="p">$</span> uv run src/main.py
+<span class="p">$</span> uv run search-agent
 hello world!
 
 <span class="p">$</span> uv remove langchain-community   <span class="c"># undo</span>
@@ -479,7 +479,7 @@ hello world!
             <span class="label">Build and run</span>
             <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py --build
 → Building langchain-coures-v03:latest
-→ Running python src/main.py in langchain-coures-v03:latest
+→ Running search-agent in langchain-coures-v03:latest
 hello world!</code></pre>
           </div>
           <div class="example">
@@ -561,7 +561,7 @@ hello world!</code></pre>
           <div class="example">
             <span class="label">Ruff finds an unused import</span>
             <pre><code><span class="p">$</span> uv run ruff check .
-src/main.py:1:8: F401 [*] `json` imported but unused
+src/search_agent/main.py:1:8: F401 [*] `json` imported but unused
 Found 1 error.
 
 <span class="p">$</span> uv run ruff check . --fix
@@ -595,14 +595,14 @@ Found 1 error.
         <div>
           <h3>Example</h3>
           <div class="example">
-            <span class="label">tests/test_main.py</span>
-            <pre><code>import main
+            <span class="label">tests/test_config.py</span>
+            <pre><code>from search_agent import config
 
 def test_check_env_passes_when_all_keys_are_set(monkeypatch):
-    for key in main.REQUIRED_KEYS:
+    for key in config.REQUIRED_KEYS:
         monkeypatch.setenv(key, "test-value")
 
-    main.check_env()  <span class="c"># should not stop the program</span></code></pre>
+    config.check_env()  <span class="c"># should not stop the program</span></code></pre>
           </div>
           <div class="example">
             <span class="label">Run them</span>

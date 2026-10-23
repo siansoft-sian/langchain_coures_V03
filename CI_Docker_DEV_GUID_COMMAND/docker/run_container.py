@@ -2,7 +2,7 @@
 
 Usage:
     python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py
-        runs DEFAULT_COMMAND, e.g. python src/main.py
+        runs DEFAULT_COMMAND, e.g. search-agent
     python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py --build
         builds the image first
     python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py bash
@@ -39,7 +39,7 @@ examples:
   python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py bash
       open a shell inside the container (type exit to leave)
 
-  python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py python src/main.py
+  python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py search-agent
       run any command inside the container
 
 settings (edit in project_config.py, current values shown):

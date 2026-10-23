@@ -16,7 +16,7 @@ services:
     image: langchain-coures-v03:latest
     env_file:
       - path: .env
-        required: false # starts even without .env; src/main.py then says which keys are missing
+        required: false # starts even without .env; the app then says which keys are missing
     # ports:
     #   - "8000:8000"   # uncomment if the app becomes a web API
 

@@ -50,7 +50,7 @@ UV_VERSION = "0.12.24"
 ENV_FILE = ".env"
 
 # Command the container runs when you don't give one
-DEFAULT_COMMAND = ["python", "src/main.py"]
+DEFAULT_COMMAND = ["search-agent"]
 
 # Ports to open, as "computer:container", e.g. ["8000:8000"] for a web API. Empty = none.
 PORTS = []

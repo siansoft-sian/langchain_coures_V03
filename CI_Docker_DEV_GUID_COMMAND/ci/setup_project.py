@@ -55,7 +55,7 @@ examples:
 
 after it finishes:
   1. open {ENV_FILE} and fill in any empty keys
-  2. run the project: uv run src/main.py
+  2. run the project: uv run search-agent
 """
 
 
@@ -105,9 +105,9 @@ def main() -> None:
         print(f"✓ Setup done, but these keys in {ENV_FILE} are still empty:")
         for key in missing:
             print(f"    {key}")
-        print(f"  Open {ENV_FILE}, fill them in, then run: uv run src/main.py")
+        print(f"  Open {ENV_FILE}, fill them in, then run: uv run search-agent")
     else:
-        print("✓ Setup done. Run the project with: uv run src/main.py")
+        print("✓ Setup done. Run the project with: uv run search-agent")
 
 
 if __name__ == "__main__":

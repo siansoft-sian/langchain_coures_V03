@@ -26,7 +26,7 @@ On macOS, use `python3` if `python` isn't found.
 ## Run
 
 ```bash
-uv run src/main.py
+uv run search-agent
 ```
 
 Or in Docker (open Docker Desktop first):
@@ -50,7 +50,7 @@ Before each commit, gitleaks blocks any API key or password found in the code. G
 
 | Path | What it is |
 | --- | --- |
-| [src/main.py](src/main.py) | The program |
+| [src/search_agent/](src/search_agent/) | The program (start: main.py, keys: config.py) |
 | [.env.example](.env.example) | The keys the project needs (copy to `.env`) |
 | [project_config.py](project_config.py) | Settings for all the scripts in `CI_Docker_DEV_GUID_COMMAND/` |
 | [CI_Docker_DEV_GUID_COMMAND/ci/](CI_Docker_DEV_GUID_COMMAND/ci/README.md) | Scripts for setup, branches and saving work to GitHub, plus the visual [developer guide](CI_Docker_DEV_GUID_COMMAND/dev_guide/index.html) |

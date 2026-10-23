@@ -82,6 +82,6 @@ A quick reference for the [uv](https://docs.astral.sh/uv/) commands you'll use m
 ```bash
 uv sync                      # install everything after cloning
 uv add langchain-openai      # add a new package
-uv run python src/main.py    # run your code
+uv run search-agent          # run your code
 git add pyproject.toml uv.lock && git commit -m "Add langchain-openai"
 ```

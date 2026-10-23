@@ -15,6 +15,14 @@ dependencies = [
     "tavily-python>=0.8.5",
 ]
 
+# Lets you run the program with: uv run search-agent
+[project.scripts]
+search-agent = "search_agent.main:main"
+
+[build-system]
+requires = ["uv_build>=0.12.24,<0.13"]
+build-backend = "uv_build"
+
 [dependency-groups]
 dev = [
     "pre-commit>=4.7.0",
@@ -22,13 +30,14 @@ dev = [
     "ruff>=0.17.2",
 ]
 
-[tool.uv]
-package = false
+# The code lives in src/search_agent/ (uv installs it into .venv)
+[tool.uv.build-backend]
+module-name = "search_agent"
 
 [tool.ruff]
 line-length = 120
 target-version = "py313"
-src = [".", "src"] # so Ruff knows "import main" is our own code
+src = [".", "src"] # so Ruff knows search_agent is our own code
 
 [tool.ruff.lint]
 # E/W: style errors, F: real bugs (unused names, typos), I: import order,
@@ -37,4 +46,4 @@ select = ["E", "W", "F", "I", "UP", "B"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src", "CI_Docker_DEV_GUID_COMMAND/ci"]
+pythonpath = ["CI_Docker_DEV_GUID_COMMAND/ci"] # search_agent itself is installed by uv
