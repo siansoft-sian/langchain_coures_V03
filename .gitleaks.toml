@@ -1,0 +1,30 @@
+# Settings for gitleaks, the secret scanner that runs before every commit.
+# It uses gitleaks' ~200 built-in rules plus the extra rules below.
+# Docs: https://github.com/gitleaks/gitleaks
+
+title = "Project secret scan"
+
+[extend]
+useDefault = true
+
+# Tavily web search keys, e.g. tvly-dev-AbC123...
+[[rules]]
+id = "tavily-api-key"
+description = "Tavily API key"
+regex = '''\btvly-(?:dev-|prod-)?[A-Za-z0-9_-]{20,}'''
+keywords = ["tvly-"]
+
+# Newer OpenAI key formats, e.g. sk-proj-AbC123...
+[[rules]]
+id = "openai-project-key"
+description = "OpenAI API key (project, service account or admin)"
+regex = '''\bsk-(?:proj|svcacct|admin)-[A-Za-z0-9_-]{20,}'''
+keywords = ["sk-proj-", "sk-svcacct-", "sk-admin-"]
+
+# Files that hold no real secrets
+[allowlist]
+description = "Safe files"
+paths = [
+  '''(^|/)\.env\.example$''',
+  '''(^|/)uv\.lock$''',
+]

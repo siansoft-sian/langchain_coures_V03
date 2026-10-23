@@ -23,7 +23,7 @@
   --branch: #2563eb;   /* create_branch.py */
   --save: #ea580c;     /* save_project.py */
   --uv: #c026d3;       /* uv packages */
-  --docker: #0891b2;   /* docker/ scripts */
+  --docker: #0891b2;   /* CI_Docker_DEV_GUID_COMMAND/docker/ scripts */
   --compose: #0f766e;  /* docker-compose.yml */
   --ruff: #65a30d;     /* Ruff lint + format */
   --tests: #dc2626;    /* pytest */
@@ -213,9 +213,8 @@ h2.section-title { margin: 30px 0 12px; font-size: 16px; }
   border-radius: 6px;
   background: var(--bg);
   font-size: 11px;
-  white-space: nowrap;
-  overflow-x: auto;
   max-width: 100%;
+  overflow-wrap: break-word; /* long paths wrap after a / (see <wbr> in index.html) */
 }
 
 .btn {

@@ -61,28 +61,28 @@
         <div class="icon">SET</div>
         <h3>Set up</h3>
         <p>First time on a computer.</p>
-        <code>python ci/setup_project.py</code>
+        <code>python CI_Docker_DEV_GUID_COMMAND/<wbr>ci/<wbr>setup_project.py</code>
         <a class="btn" href="#setup">Get started</a>
       </div>
       <div class="quick-card" style="--c: var(--branch)">
         <div class="icon">BR</div>
         <h3>New branch</h3>
         <p>Start a new piece of work.</p>
-        <code>python ci/create_branch.py my-feature</code>
+        <code>python CI_Docker_DEV_GUID_COMMAND/<wbr>ci/<wbr>create_branch.py my-feature</code>
         <a class="btn" href="#branch">Get started</a>
       </div>
       <div class="quick-card" style="--c: var(--save)">
         <div class="icon">SV</div>
         <h3>Save work</h3>
         <p>Commit and upload to GitHub.</p>
-        <code>python ci/save_project.py "What changed"</code>
+        <code>python CI_Docker_DEV_GUID_COMMAND/<wbr>ci/<wbr>save_project.py "What changed"</code>
         <a class="btn" href="#save">Get started</a>
       </div>
       <div class="quick-card" style="--c: var(--docker)">
         <div class="icon">DK</div>
         <h3>Run in Docker</h3>
         <p>Build the image and run it.</p>
-        <code>python docker/run_container.py --build</code>
+        <code>python CI_Docker_DEV_GUID_COMMAND/<wbr>docker/<wbr>run_container.py --build</code>
         <a class="btn" href="#docker">Get started</a>
       </div>
     </div>
@@ -123,14 +123,14 @@
       <div class="tab-page page-1">
         <div class="course" style="--c: var(--branch)">
           <h3>New branch</h3>
-          <div class="file">ci/create_branch.py</div>
+          <div class="file">CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py</div>
           <p>Fresh branch from the latest main.</p>
           <div class="tile">BR</div>
           <a class="btn dark" href="#branch">how-to</a>
         </div>
         <div class="course" style="--c: var(--save)">
           <h3>Save work</h3>
-          <div class="file">ci/save_project.py</div>
+          <div class="file">CI_Docker_DEV_GUID_COMMAND/ci/save_project.py</div>
           <p>Commit, sync and upload.</p>
           <div class="tile">SV</div>
           <a class="btn dark" href="#save">how-to</a>
@@ -147,7 +147,7 @@
       <div class="tab-page page-2">
         <div class="course" style="--c: var(--docker)">
           <h3>Docker</h3>
-          <div class="file">docker/</div>
+          <div class="file">CI_Docker_DEV_GUID_COMMAND/docker/</div>
           <p>Build the image, run a container.</p>
           <div class="tile">DK</div>
           <a class="btn dark" href="#docker">how-to</a>
@@ -195,7 +195,7 @@
       <div class="tab-page page-4">
         <div class="course" style="--c: var(--setup)">
           <h3>Setup</h3>
-          <div class="file">ci/setup_project.py</div>
+          <div class="file">CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py</div>
           <p>One command for a new computer.</p>
           <div class="tile">SET</div>
           <a class="btn dark" href="#setup">how-to</a>
@@ -210,7 +210,7 @@
         <div class="course" style="--c: var(--config)">
           <h3>Settings</h3>
           <div class="file">project_config.py</div>
-          <p>Settings for ci/ and docker/.</p>
+          <p>Settings for all CI_Docker_DEV_GUID_COMMAND/ci/ scripts.</p>
           <div class="tile">CFG</div>
           <a class="btn dark" href="#config">how-to</a>
         </div>
@@ -228,7 +228,7 @@
           <h2>Set up the project</h2>
           <p>Installs Python and packages, turns on commit checks and creates <code>.env</code>.</p>
         </div>
-        <a class="path" href="../ci/setup_project.py">ci/setup_project.py</a>
+        <a class="path" href="../ci/setup_project.py">CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py</a>
       </header>
       <div class="guide-body">
         <div>
@@ -236,16 +236,16 @@
           <ol class="steps">
             <li>Install <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a> and git.</li>
             <li>Clone the project and open its folder.</li>
-            <li>Run <code>python ci/setup_project.py</code> (use <code>python3</code> on macOS if needed).</li>
+            <li>Run <code>python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py</code> (use <code>python3</code> on macOS if needed).</li>
             <li>Open <code>.env</code> and fill in any keys it says are empty.</li>
-            <li>Run the project with <code>uv run main.py</code>.</li>
+            <li>Run the project with <code>uv run src/main.py</code>.</li>
           </ol>
         </div>
         <div>
           <h3>Example</h3>
           <div class="example">
             <span class="label">First time on a new computer</span>
-            <pre><code><span class="p">$</span> python ci/setup_project.py
+            <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py
 → Checking that uv is installed
 → Installing Python and packages (uv sync)
 → Turning on the checks that run before every commit (pre-commit)
@@ -267,14 +267,14 @@
           <h2>API keys (.env)</h2>
           <p>Your secret keys. Never uploaded to GitHub, never built into the Docker image.</p>
         </div>
-        <a class="path" href="../.env.example">.env.example</a>
+        <a class="path" href="../../.env.example">.env.example</a>
       </header>
       <div class="guide-body">
         <div>
           <h3>How to add a new key</h3>
           <ol class="steps">
             <li>Add the key with an empty value to <code>.env.example</code>.</li>
-            <li>Add the same name to <code>REQUIRED_KEYS</code> in <code>main.py</code>.</li>
+            <li>Add the same name to <code>REQUIRED_KEYS</code> in <code>src/main.py</code>.</li>
             <li>Put the real value in your own <code>.env</code>.</li>
             <li>Run <code>uv run pytest</code>. A test checks that the two lists match.</li>
           </ol>
@@ -288,9 +288,9 @@ TAVILY_API_KEY=</code></pre>
           </div>
           <div class="example">
             <span class="label">When a key is missing</span>
-            <pre><code><span class="p">$</span> uv run main.py
+            <pre><code><span class="p">$</span> uv run src/main.py
 <span class="e">✗ Missing keys: OPENAI_API_KEY</span>
-  Add them to .env (see .env.example), or run: python ci/setup_project.py</code></pre>
+  Add them to .env (see .env.example), or run: python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py</code></pre>
           </div>
         </div>
         <p class="tip"><strong>Good to know:</strong> <code>save_project.py</code> refuses to commit <code>.env</code>, <code>*.pem</code>, <code>*.key</code> and other secret files (see <code>BLOCKED_FILES</code>).</p>
@@ -303,9 +303,9 @@ TAVILY_API_KEY=</code></pre>
         <div>
           <p class="eyebrow">Start here</p>
           <h2>Settings (project_config.py)</h2>
-          <p>One file for every setting used by the <code>ci/</code> and <code>docker/</code> scripts.</p>
+          <p>One file for every setting used by the scripts in <code>CI_Docker_DEV_GUID_COMMAND/ci/</code> and <code>CI_Docker_DEV_GUID_COMMAND/docker/</code>.</p>
         </div>
-        <a class="path" href="../project_config.py">project_config.py</a>
+        <a class="path" href="../../project_config.py">project_config.py</a>
       </header>
       <div class="guide-body">
         <div>
@@ -321,17 +321,17 @@ TAVILY_API_KEY=</code></pre>
           <h3>Example</h3>
           <div class="example">
             <span class="label">project_config.py</span>
-            <pre><code><span class="c"># Git and GitHub (ci/ scripts)</span>
+            <pre><code><span class="c"># Git and GitHub (CI_Docker_DEV_GUID_COMMAND/ci/ scripts)</span>
 MAIN_BRANCH = "main"
 BRANCH_PREFIX = "feature/"   <span class="c"># my-idea -&gt; feature/my-idea</span>
 SYNC_WITH_MAIN = False
 
-<span class="c"># Docker (docker/ scripts)</span>
+<span class="c"># Docker (CI_Docker_DEV_GUID_COMMAND/docker/ scripts)</span>
 IMAGE_NAME = "langchain-coures-v03"
 PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           </div>
         </div>
-        <p class="tip"><strong>Good to know:</strong> to reuse the scripts in another project, copy <code>ci/</code>, <code>docker/</code> and <code>project_config.py</code> together.</p>
+        <p class="tip"><strong>Good to know:</strong> to reuse the scripts in another project, copy the <code>CI_Docker_DEV_GUID_COMMAND/ci/</code> folder and <code>project_config.py</code> together.</p>
       </div>
     </section>
 
@@ -346,14 +346,14 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           <h2>Create a new branch</h2>
           <p>Gets the latest main, creates your branch from it and uploads it to GitHub.</p>
         </div>
-        <a class="path" href="../ci/create_branch.py">ci/create_branch.py</a>
+        <a class="path" href="../ci/create_branch.py">CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py</a>
       </header>
       <div class="guide-body">
         <div>
           <h3>How to</h3>
           <ol class="steps">
             <li>Save or commit your current work first.</li>
-            <li>Run <code>python ci/create_branch.py &lt;name&gt;</code>.</li>
+            <li>Run <code>python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py &lt;name&gt;</code>.</li>
             <li>Use a short name with no spaces, e.g. <code>add-search-tool</code>.</li>
             <li>You are now on the new branch. Start working.</li>
           </ol>
@@ -362,7 +362,7 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           <h3>Example</h3>
           <div class="example">
             <span class="label">Start new work</span>
-            <pre><code><span class="p">$</span> python ci/create_branch.py add-search-tool
+            <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py add-search-tool
 → Switching to main
 → Getting the latest main from origin
 → Creating branch add-search-tool
@@ -370,7 +370,7 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
 <span class="o">✓ Branch 'add-search-tool' created and uploaded. You are now on it.</span></code></pre>
           </div>
         </div>
-        <p class="tip"><strong>Good to know:</strong> run it with no name and it asks you for one. Run <code>python ci/create_branch.py --help</code> for every option.</p>
+        <p class="tip"><strong>Good to know:</strong> run it with no name and it asks you for one. Run <code>python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py --help</code> for every option.</p>
       </div>
     </section>
 
@@ -382,13 +382,13 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           <h2>Save your work</h2>
           <p>Commits every change, gets other people's changes and uploads your branch.</p>
         </div>
-        <a class="path" href="../ci/save_project.py">ci/save_project.py</a>
+        <a class="path" href="../ci/save_project.py">CI_Docker_DEV_GUID_COMMAND/ci/save_project.py</a>
       </header>
       <div class="guide-body">
         <div>
           <h3>How to</h3>
           <ol class="steps">
-            <li>Run <code>python ci/save_project.py "What you changed"</code>, as often as you like.</li>
+            <li>Run <code>python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "What you changed"</code>, as often as you like.</li>
             <li>If the commit checks fix a file, the save stops. Run the same command again.</li>
             <li>When the work is done, add <code>--main</code> to also update main.</li>
             <li>On a conflict, fix the files Git lists, run the command it prints, then save again.</li>
@@ -398,7 +398,7 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           <h3>Example</h3>
           <div class="example">
             <span class="label">Save during the day</span>
-            <pre><code><span class="p">$</span> python ci/save_project.py "Add Tavily search tool"
+            <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Add Tavily search tool"
 → Staging all changes
 → Committing: Add Tavily search tool
 → Uploading add-search-tool to origin
@@ -406,7 +406,7 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           </div>
           <div class="example">
             <span class="label">Finished: also move main forward</span>
-            <pre><code><span class="p">$</span> python ci/save_project.py "Finish search tool" --main</code></pre>
+            <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Finish search tool" --main</code></pre>
           </div>
         </div>
         <p class="tip"><strong>Good to know:</strong> <code>--main</code> never overwrites main. If main has commits your branch doesn't, it stops and tells you to merge main first.</p>
@@ -424,13 +424,13 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           <h2>Packages and running code (uv)</h2>
           <p>uv installs Python and the exact package versions in <code>uv.lock</code>.</p>
         </div>
-        <a class="path" href="../ci/Git_Gh_UV_ENV_COMMANDS/UV_COMMANDS.md">UV_COMMANDS.md</a>
+        <a class="path" href="../Git_Gh_UV_ENV_COMMANDS/UV_COMMANDS.md">UV_COMMANDS.md</a>
       </header>
       <div class="guide-body">
         <div>
           <h3>How to</h3>
           <ol class="steps">
-            <li>Run the project: <code>uv run main.py</code>.</li>
+            <li>Run the project: <code>uv run src/main.py</code>.</li>
             <li>Add a package: <code>uv add &lt;package&gt;</code>.</li>
             <li>Add a tool only for development: <code>uv add --dev &lt;package&gt;</code>.</li>
             <li>After pulling someone else's changes: <code>uv sync</code>.</li>
@@ -442,7 +442,7 @@ PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           <div class="example">
             <span class="label">Add a package and use it</span>
             <pre><code><span class="p">$</span> uv add langchain-community
-<span class="p">$</span> uv run main.py
+<span class="p">$</span> uv run src/main.py
 hello world!
 
 <span class="p">$</span> uv remove langchain-community   <span class="c"># undo</span>
@@ -461,31 +461,31 @@ hello world!
           <h2>Docker</h2>
           <p>Builds the project into an image and runs it in a container with your <code>.env</code> keys.</p>
         </div>
-        <a class="path" href="../docker/README.md">docker/</a>
+        <a class="path" href="../docker/README.md">CI_Docker_DEV_GUID_COMMAND/docker/</a>
       </header>
       <div class="guide-body">
         <div>
           <h3>How to</h3>
           <ol class="steps">
             <li>Open Docker Desktop and wait until it's running.</li>
-            <li>Run <code>python docker/run_container.py --build</code>.</li>
+            <li>Run <code>python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py --build</code>.</li>
             <li>After changing code or packages, use <code>--build</code> again.</li>
-            <li>To look around inside: <code>python docker/run_container.py bash</code>.</li>
+            <li>To look around inside: <code>python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py bash</code>.</li>
           </ol>
         </div>
         <div>
           <h3>Example</h3>
           <div class="example">
             <span class="label">Build and run</span>
-            <pre><code><span class="p">$</span> python docker/run_container.py --build
+            <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py --build
 → Building langchain-coures-v03:latest
-→ Running python main.py in langchain-coures-v03:latest
+→ Running python src/main.py in langchain-coures-v03:latest
 hello world!</code></pre>
           </div>
           <div class="example">
             <span class="label">Build only</span>
-            <pre><code><span class="p">$</span> python docker/build_image.py
-<span class="p">$</span> python docker/build_image.py --no-cache   <span class="c"># from scratch</span></code></pre>
+            <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/docker/build_image.py
+<span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/docker/build_image.py --no-cache   <span class="c"># from scratch</span></code></pre>
           </div>
         </div>
         <p class="tip"><strong>Good to know:</strong> the image holds the code as it was when you built it. The container is removed when it stops, and the image stays.</p>
@@ -500,7 +500,7 @@ hello world!</code></pre>
           <h2>Docker Compose</h2>
           <p>Starts the app and any extra services (like a database) with one command.</p>
         </div>
-        <a class="path" href="../docker-compose.yml">docker-compose.yml</a>
+        <a class="path" href="../../docker-compose.yml">docker-compose.yml</a>
       </header>
       <div class="guide-body">
         <div>
@@ -519,7 +519,7 @@ hello world!</code></pre>
   app:
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: CI_Docker_DEV_GUID_COMMAND/docker/Dockerfile
     env_file:
       - path: .env
         required: false
@@ -529,7 +529,7 @@ hello world!</code></pre>
       POSTGRES_PASSWORD: postgres</code></pre>
           </div>
         </div>
-        <p class="tip"><strong>Good to know:</strong> for one container, <code>docker/run_container.py</code> is simpler. More commands are in <code>docker/DOCKER_COMMANDS.md</code>.</p>
+        <p class="tip"><strong>Good to know:</strong> for one container, <code>CI_Docker_DEV_GUID_COMMAND/docker/run_container.py</code> is simpler. More commands are in <code>CI_Docker_DEV_GUID_COMMAND/docker/DOCKER_COMMANDS.md</code>.</p>
       </div>
     </section>
 
@@ -544,7 +544,7 @@ hello world!</code></pre>
           <h2>Ruff: lint and format</h2>
           <p>Finds common mistakes, sorts imports and formats code the same way everywhere.</p>
         </div>
-        <a class="path" href="../pyproject.toml">pyproject.toml</a>
+        <a class="path" href="../../pyproject.toml">pyproject.toml</a>
       </header>
       <div class="guide-body">
         <div>
@@ -561,7 +561,7 @@ hello world!</code></pre>
           <div class="example">
             <span class="label">Ruff finds an unused import</span>
             <pre><code><span class="p">$</span> uv run ruff check .
-main.py:1:8: F401 [*] `json` imported but unused
+src/main.py:1:8: F401 [*] `json` imported but unused
 Found 1 error.
 
 <span class="p">$</span> uv run ruff check . --fix
@@ -580,7 +580,7 @@ Found 1 error.
           <h2>Tests (pytest)</h2>
           <p>Small checks that prove the code still works after a change.</p>
         </div>
-        <a class="path" href="../tests/">tests/</a>
+        <a class="path" href="../../tests/">tests/</a>
       </header>
       <div class="guide-body">
         <div>
@@ -620,15 +620,15 @@ def test_check_env_passes_when_all_keys_are_set(monkeypatch):
         <div>
           <p class="eyebrow">Code quality</p>
           <h2>Commit checks (pre-commit)</h2>
-          <p>Run Ruff and safety checks automatically before every commit.</p>
+          <p>Run the gitleaks secret scan, Ruff and safety checks before every commit.</p>
         </div>
-        <a class="path" href="../.pre-commit-config.yaml">.pre-commit-config.yaml</a>
+        <a class="path" href="../../.pre-commit-config.yaml">.pre-commit-config.yaml</a>
       </header>
       <div class="guide-body">
         <div>
           <h3>How to</h3>
           <ol class="steps">
-            <li>Turned on by <code>python ci/setup_project.py</code>.</li>
+            <li>Turned on by <code>python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py</code>.</li>
             <li>Commit as usual. The checks run by themselves.</li>
             <li>If a check fixes a file, commit (or save) again.</li>
             <li>Run them on all files: <code>uv run pre-commit run --all-files</code>.</li>
@@ -637,18 +637,28 @@ def test_check_env_passes_when_all_keys_are_set(monkeypatch):
         <div>
           <h3>Example</h3>
           <div class="example">
+            <span class="label">gitleaks finds a key in the code</span>
+            <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Add search"
+Detect hardcoded secrets.................<span class="e">Failed</span>
+RuleID:      tavily-api-key
+File:        agent.py
+Line:        4
+Secret:      REDACTED
+<span class="e">✗ 'git commit -m Add search' failed</span></code></pre>
+          </div>
+          <div class="example">
             <span class="label">A check fixed a file, so save again</span>
-            <pre><code><span class="p">$</span> python ci/save_project.py "Update agent"
+            <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Update agent"
 ruff format..............................<span class="e">Failed</span>
 - files were modified by this hook
 <span class="e">✗ 'git commit -m Update agent' failed</span>
 
-<span class="p">$</span> python ci/save_project.py "Update agent"
+<span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Update agent"
 ruff format..............................<span class="o">Passed</span>
 <span class="o">✓ Project saved and 'add-search-tool' is up to date on origin.</span></code></pre>
           </div>
         </div>
-        <p class="tip"><strong>Good to know:</strong> the checks also block private keys, leftover <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> conflict markers and files over 500 KB.</p>
+        <p class="tip"><strong>Good to know:</strong> gitleaks blocks API keys, tokens and passwords (rules in <code>.gitleaks.toml</code>). If it stops you, move the key to <code>.env</code> and read it with <code>os.getenv("NAME")</code>. For a false alarm, end the line with <code># gitleaks:allow</code>. The checks also block leftover <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> conflict markers and files over 500 KB.</p>
       </div>
     </section>
 
@@ -658,15 +668,15 @@ ruff format..............................<span class="o">Passed</span>
         <div>
           <p class="eyebrow">Code quality</p>
           <h2>GitHub Actions</h2>
-          <p>After every push, GitHub runs Ruff, the tests and a Docker build.</p>
+          <p>After every push, GitHub runs Ruff, the tests, a secret scan of the whole history and a Docker build.</p>
         </div>
-        <a class="path" href="../.github/workflows/check.yml">check.yml</a>
+        <a class="path" href="../../.github/workflows/check.yml">check.yml</a>
       </header>
       <div class="guide-body">
         <div>
           <h3>How to</h3>
           <ol class="steps">
-            <li>Push as usual with <code>python ci/save_project.py</code>.</li>
+            <li>Push as usual with <code>python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py</code>.</li>
             <li>Open the repository on GitHub and go to the <strong>Actions</strong> tab.</li>
             <li>A green tick means everything passed. A red cross means click it to see what failed.</li>
             <li>Fix it locally, then save again.</li>

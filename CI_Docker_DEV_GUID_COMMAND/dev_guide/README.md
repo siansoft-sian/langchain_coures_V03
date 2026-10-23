@@ -5,9 +5,9 @@ A one-page dashboard that shows how to use every part of this project: setup, AP
 ## Open it
 
 ```bash
-open dev_guide/index.html        # macOS
-xdg-open dev_guide/index.html    # Linux
-start dev_guide/index.html       # Windows
+open CI_Docker_DEV_GUID_COMMAND/dev_guide/index.html        # macOS
+xdg-open CI_Docker_DEV_GUID_COMMAND/dev_guide/index.html    # Linux
+start CI_Docker_DEV_GUID_COMMAND/dev_guide/index.html       # Windows
 ```
 
 Or right-click `index.html` in VS Code and choose **Reveal in Finder**, then double-click it.

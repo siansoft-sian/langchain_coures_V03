@@ -1,10 +1,14 @@
 """Run the project inside a Docker container.
 
 Usage:
-    python docker/run_container.py                 (runs DEFAULT_COMMAND, e.g. python main.py)
-    python docker/run_container.py --build         (build the image first)
-    python docker/run_container.py bash            (open a shell inside the container)
-    python docker/run_container.py python other.py (run any command)
+    python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py
+        runs DEFAULT_COMMAND, e.g. python src/main.py
+    python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py --build
+        builds the image first
+    python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py bash
+        opens a shell inside the container
+    python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py python other.py
+        runs any command
 """
 
 import argparse
@@ -26,16 +30,16 @@ what it does:
   4. runs the command, shows its output, and removes the container when it ends
 
 examples:
-  python docker/run_container.py
+  python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py
       run the default command: {default}
 
-  python docker/run_container.py --build
+  python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py --build
       rebuild the image with your latest code, then run it
 
-  python docker/run_container.py bash
+  python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py bash
       open a shell inside the container (type exit to leave)
 
-  python docker/run_container.py python main.py
+  python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py python src/main.py
       run any command inside the container
 
 settings (edit in project_config.py, current values shown):
@@ -47,7 +51,7 @@ settings (edit in project_config.py, current values shown):
 
 note:
   The container runs the code that was copied in when the image was built.
-  After you change code, use --build (or run docker/build_image.py) first.
+  After you change code, use --build (or run CI_Docker_DEV_GUID_COMMAND/docker/build_image.py) first.
 """
 
 

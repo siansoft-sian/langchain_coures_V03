@@ -1,11 +1,11 @@
-"""Settings for the scripts in the ci/ and docker/ folders.
+"""Settings for the scripts in CI_Docker_DEV_GUID_COMMAND/ci/ and CI_Docker_DEV_GUID_COMMAND/docker/.
 
 This is the only file you need to edit. To reuse the scripts in another
-project, copy this file and the ci/ and docker/ folders into its main folder.
+project, copy this file and the CI_Docker_DEV_GUID_COMMAND/ folder into its main folder.
 """
 
 # =====================================================================
-# Git and GitHub (ci/ scripts)
+# Git and GitHub (CI_Docker_DEV_GUID_COMMAND/ci/ scripts)
 # =====================================================================
 
 # Name of the GitHub remote (see: git remote -v)
@@ -27,10 +27,13 @@ CONFIRM_ON_MAIN = True
 SYNC_WITH_MAIN = False
 
 # Files that must never be uploaded. Saving stops if one of these would be committed.
-BLOCKED_FILES = [".env", "*.pem", "*.key", "id_rsa", "credentials.json"]
+BLOCKED_FILES = [".env", ".env.*", "*.pem", "*.key", "id_rsa", "credentials.json"]
+
+# Files that match BLOCKED_FILES but are safe to upload (they hold no real keys)
+ALLOWED_FILES = [".env.example"]
 
 # =====================================================================
-# Docker (docker/ scripts)
+# Docker (CI_Docker_DEV_GUID_COMMAND/docker/ scripts)
 # =====================================================================
 
 # Name of the image (lowercase letters, numbers, - and _ only)
@@ -47,7 +50,7 @@ UV_VERSION = "0.12.24"
 ENV_FILE = ".env"
 
 # Command the container runs when you don't give one
-DEFAULT_COMMAND = ["python", "main.py"]
+DEFAULT_COMMAND = ["python", "src/main.py"]
 
 # Ports to open, as "computer:container", e.g. ["8000:8000"] for a web API. Empty = none.
 PORTS = []

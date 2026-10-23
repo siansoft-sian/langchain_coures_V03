@@ -15,7 +15,7 @@ def check_env() -> None:
     if missing:
         sys.exit(
             f"✗ Missing keys: {', '.join(missing)}\n"
-            "  Add them to .env (see .env.example), or run: python ci/setup_project.py"
+            "  Add them to .env (see .env.example), or run: python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py"
         )
 
 

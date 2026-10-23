@@ -1,11 +1,18 @@
 # Checks that run automatically before every commit.
-# Turned on by: python ci/setup_project.py   (or: uv run pre-commit install)
+# Turned on by: python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py   (or: uv run pre-commit install)
 # Run them by hand on all files: uv run pre-commit run --all-files
 #
 # If a check fixes a file, the commit stops. Just commit again
-# (or run python ci/save_project.py again) to include the fixes.
+# (or run python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py again) to include the fixes.
 
 repos:
+  # Secret scanner: stops the commit if an API key, token or password is in the code.
+  # Extra rules (Tavily, new OpenAI keys) are in .gitleaks.toml
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.17.2 # keep in step with the ruff version in uv.lock
     hooks:

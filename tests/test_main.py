@@ -1,4 +1,4 @@
-"""Tests for main.py. Run them with: uv run pytest"""
+"""Tests for src/main.py. Run them with: uv run pytest"""
 
 import pytest
 
@@ -25,7 +25,7 @@ def test_check_env_stops_and_names_the_missing_key(monkeypatch):
 
 
 def test_required_keys_match_env_example():
-    """REQUIRED_KEYS in main.py and .env.example must list the same keys."""
+    """REQUIRED_KEYS in src/main.py and .env.example must list the same keys."""
     from setup_project import read_env_keys
 
     assert set(read_env_keys(".env.example")) == set(main.REQUIRED_KEYS)

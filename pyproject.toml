@@ -28,6 +28,7 @@ package = false
 [tool.ruff]
 line-length = 120
 target-version = "py313"
+src = [".", "src"] # so Ruff knows "import main" is our own code
 
 [tool.ruff.lint]
 # E/W: style errors, F: real bugs (unused names, typos), I: import order,
@@ -36,4 +37,4 @@ select = ["E", "W", "F", "I", "UP", "B"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = [".", "ci"]
+pythonpath = ["src", "CI_Docker_DEV_GUID_COMMAND/ci"]

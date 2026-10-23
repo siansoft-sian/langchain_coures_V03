@@ -5,8 +5,20 @@ import subprocess
 import sys
 from pathlib import Path
 
+
+def find_project_root(start: Path) -> Path:
+    """Return the nearest folder above `start` that holds project_config.py."""
+    for folder in start.parents:
+        if (folder / "project_config.py").is_file():
+            return folder
+    print("✗ project_config.py not found in any folder above the scripts.", file=sys.stderr)
+    sys.exit(1)
+
+
+PROJECT_ROOT = find_project_root(Path(__file__).resolve())
+
 # Load the shared settings file (project_config.py) from the project's main folder.
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(PROJECT_ROOT))
 import project_config as config  # noqa: E402, F401 (used by the scripts)
 
 

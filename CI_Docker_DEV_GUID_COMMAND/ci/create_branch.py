@@ -1,8 +1,8 @@
 """Create a new branch from the latest main branch and upload it to GitHub.
 
 Usage:
-    python ci/create_branch.py my-branch
-    python ci/create_branch.py            (asks for the name)
+    python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py my-branch
+    python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py            (asks for the name)
 """
 
 import argparse
@@ -36,13 +36,13 @@ what it does:
   5. uploads the new branch to {config.REMOTE}
 
 examples:
-  python ci/create_branch.py my-new-feature
+  python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py my-new-feature
       create and upload the branch {example}
 
-  python ci/create_branch.py
+  python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py
       asks you for the branch name
 
-  uv run python ci/create_branch.py my-new-feature
+  uv run python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py my-new-feature
       the same, inside a uv project (on macOS use python3 if python isn't found)
 
 settings (edit in project_config.py, current values shown):
@@ -61,7 +61,7 @@ tip:
   Save or commit your work before creating a branch. Changes you haven't
   committed move with you to the new branch.
 
-to save your work later, see: python ci/save_project.py --help
+to save your work later, see: python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py --help
 """
 
 

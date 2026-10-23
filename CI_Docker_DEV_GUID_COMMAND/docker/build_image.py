@@ -1,8 +1,8 @@
 """Build the Docker image for this project.
 
 Usage:
-    python docker/build_image.py
-    python docker/build_image.py --no-cache     (rebuild everything from scratch)
+    python CI_Docker_DEV_GUID_COMMAND/docker/build_image.py
+    python CI_Docker_DEV_GUID_COMMAND/docker/build_image.py --no-cache     (rebuild everything from scratch)
 """
 
 import argparse
@@ -15,14 +15,14 @@ def build_help_epilog() -> str:
     return f"""\
 what it does:
   1. checks Docker is running
-  2. builds the image {image} from docker/Dockerfile
-     (files in docker/Dockerfile.dockerignore, like .env, are left out)
+  2. builds the image {image} from CI_Docker_DEV_GUID_COMMAND/docker/Dockerfile
+     (files in CI_Docker_DEV_GUID_COMMAND/docker/Dockerfile.dockerignore, like .env, are left out)
 
 examples:
-  python docker/build_image.py
+  python CI_Docker_DEV_GUID_COMMAND/docker/build_image.py
       build the image (fast after the first time, unchanged steps are reused)
 
-  python docker/build_image.py --no-cache
+  python CI_Docker_DEV_GUID_COMMAND/docker/build_image.py --no-cache
       rebuild every step, e.g. after a strange error
 
 settings (edit in project_config.py, current values shown):
@@ -31,7 +31,7 @@ settings (edit in project_config.py, current values shown):
   PYTHON_VERSION  {config.PYTHON_VERSION!r}
   UV_VERSION      {config.UV_VERSION!r}
 
-to run the image, see: python docker/run_container.py --help
+to run the image, see: python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py --help
 """
 
 
@@ -71,7 +71,10 @@ def main() -> None:
 
     build(no_cache=args.no_cache)
 
-    print(f"✓ Image '{config.IMAGE_NAME}:{config.TAG}' is ready. Run it with: python docker/run_container.py")
+    print(
+        f"✓ Image '{config.IMAGE_NAME}:{config.TAG}' is ready. "
+        "Run it with: python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py"
+    )
 
 
 if __name__ == "__main__":

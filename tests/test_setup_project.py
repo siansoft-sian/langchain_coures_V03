@@ -1,4 +1,4 @@
-"""Tests for ci/setup_project.py. Run them with: uv run pytest"""
+"""Tests for CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py. Run them with: uv run pytest"""
 
 from setup_project import read_env_keys
 

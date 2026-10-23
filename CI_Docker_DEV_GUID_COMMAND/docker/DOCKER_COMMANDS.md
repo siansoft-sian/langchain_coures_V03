@@ -13,8 +13,8 @@ A quick reference for the [Docker](https://docs.docker.com/) commands you'll use
 
 | Command | What it does |
 | --- | --- |
-| `docker build -f docker/Dockerfile -t my-app .` | Build an image named `my-app` from the project folder |
-| `docker build --no-cache -f docker/Dockerfile -t my-app .` | Rebuild every step from scratch |
+| `docker build -f CI_Docker_DEV_GUID_COMMAND/docker/Dockerfile -t my-app .` | Build an image named `my-app` from the project folder |
+| `docker build --no-cache -f CI_Docker_DEV_GUID_COMMAND/docker/Dockerfile -t my-app .` | Rebuild every step from scratch |
 | `docker images` | List images on your computer |
 | `docker rmi my-app` | Delete an image |
 | `docker image prune` | Delete unused (dangling) images |
@@ -37,7 +37,7 @@ A quick reference for the [Docker](https://docs.docker.com/) commands you'll use
 
 ## Docker Compose
 
-[docker-compose.yml](../docker-compose.yml) in the main folder describes every container the project needs. Use it once you have more than one (for example the app and a database).
+[docker-compose.yml](../../docker-compose.yml) in the main folder describes every container the project needs. Use it once you have more than one (for example the app and a database).
 
 | Command | What it does |
 | --- | --- |

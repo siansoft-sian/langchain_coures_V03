@@ -1,6 +1,6 @@
 # Docker scripts
 
-Two reusable Python scripts that build this project into a Docker image and run it in a container. They work on macOS, Linux and Windows. Copy this `docker/` folder and [project_config.py](../project_config.py) into another uv project's main folder, then edit `project_config.py`.
+Two reusable Python scripts that build this project into a Docker image and run it in a container. They work on macOS, Linux and Windows. It sits next to the `ci/` scripts in `CI_Docker_DEV_GUID_COMMAND/`. To reuse it, copy the `CI_Docker_DEV_GUID_COMMAND/` folder and [project_config.py](../../project_config.py) into another uv project's main folder, then edit `project_config.py`.
 
 They use only Python's built-in modules, so there's nothing to install except [Docker Desktop](https://www.docker.com/). Open Docker Desktop before running them.
 
@@ -8,7 +8,7 @@ They use only Python's built-in modules, so there's nothing to install except [D
 | --- | --- |
 | [build_image.py](build_image.py) | Builds the image from the [Dockerfile](Dockerfile) |
 | [run_container.py](run_container.py) | Runs the project (or any command) inside a container, with your `.env` keys |
-| [../project_config.py](../project_config.py) | Your settings (shared with the `ci/` scripts): the only file you need to edit |
+| [project_config.py](../../project_config.py) | Your settings (shared with the [ci/](../ci/README.md) scripts): the only file you need to edit |
 | [docker_helpers.py](docker_helpers.py) | Shared helper code used by both scripts (no need to edit) |
 | [Dockerfile](Dockerfile) | Recipe for the image: Python + uv + your packages + your code |
 | [Dockerfile.dockerignore](Dockerfile.dockerignore) | Files kept out of the image (`.env`, `.venv`, `.git`, …) |
@@ -16,7 +16,7 @@ They use only Python's built-in modules, so there's nothing to install except [D
 
 ## Settings
 
-Open [project_config.py](../project_config.py) in the main folder and check the Docker values:
+Open [project_config.py](../../project_config.py) in the main folder and check the Docker values:
 
 | Setting | Meaning | Default |
 | --- | --- | --- |
@@ -25,7 +25,7 @@ Open [project_config.py](../project_config.py) in the main folder and check the 
 | `PYTHON_VERSION` | Python version inside the image | `"3.13"` |
 | `UV_VERSION` | uv version inside the image | `"0.12.24"` |
 | `ENV_FILE` | File with your API keys, passed in when the container starts | `".env"` |
-| `DEFAULT_COMMAND` | What the container runs when you don't give a command | `["python", "main.py"]` |
+| `DEFAULT_COMMAND` | What the container runs when you don't give a command | `["python", "src/main.py"]` |
 | `PORTS` | Ports to open, e.g. `["8000:8000"]` for a web API | `[]` |
 
 ## Usage
@@ -35,32 +35,32 @@ Run from anywhere inside the project.
 Build the image:
 
 ```bash
-python docker/build_image.py
+python CI_Docker_DEV_GUID_COMMAND/docker/build_image.py
 ```
 
 Run the project in a container:
 
 ```bash
-python docker/run_container.py
+python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py
 ```
 
 Rebuild with your latest code, then run:
 
 ```bash
-python docker/run_container.py --build
+python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py --build
 ```
 
 Open a shell inside the container (type `exit` to leave):
 
 ```bash
-python docker/run_container.py bash
+python CI_Docker_DEV_GUID_COMMAND/docker/run_container.py bash
 ```
 
 On macOS, use `python3` if `python` isn't found. Add `--help` to either script to see its options.
 
 ## Docker Compose
 
-For more than one container (for example the app plus a database), use [docker-compose.yml](../docker-compose.yml) in the main folder:
+For more than one container (for example the app plus a database), use [docker-compose.yml](../../docker-compose.yml) in the main folder:
 
 ```bash
 docker compose up --build

@@ -1,4 +1,4 @@
-# Image for this project. Build it with: python docker/build_image.py
+# Image for this project. Build it with: python CI_Docker_DEV_GUID_COMMAND/docker/build_image.py
 #
 # Secrets (.env) are never copied into the image. run_container.py passes
 # them in when the container starts.
@@ -29,4 +29,4 @@ RUN uv sync --locked --no-dev
 RUN useradd --create-home appuser && chown -R appuser /app
 USER appuser
 
-CMD ["python", "main.py"]
+CMD ["python", "src/main.py"]

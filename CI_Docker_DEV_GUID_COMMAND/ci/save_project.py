@@ -8,9 +8,9 @@ Steps:
     5. (with --main) also update main to match this branch
 
 Usage:
-    python ci/save_project.py "Describe your change"
-    python ci/save_project.py               (uses DEFAULT_COMMIT_MESSAGE)
-    python ci/save_project.py "Describe your change" --main
+    python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Describe your change"
+    python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py               (uses DEFAULT_COMMIT_MESSAGE)
+    python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Describe your change" --main
 """
 
 import argparse
@@ -36,10 +36,12 @@ def find_blocked_files() -> list[str]:
     """Return files that would be committed and match BLOCKED_FILES."""
     output = git_output("ls-files", "--others", "--modified", "--exclude-standard", "-z")
     changed = [path for path in output.split("\0") if path]
+    allowed = getattr(config, "ALLOWED_FILES", [])
     return [
         path
         for path in changed
-        if any(fnmatch.fnmatch(os.path.basename(path), pattern) for pattern in config.BLOCKED_FILES)
+        if os.path.basename(path) not in allowed
+        and any(fnmatch.fnmatch(os.path.basename(path), pattern) for pattern in config.BLOCKED_FILES)
     ]
 
 
@@ -81,16 +83,16 @@ what it does:
   5. updates {m} to match this branch (only with --main)
 
 examples:
-  python ci/save_project.py "Add search agent"
+  python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Add search agent"
       save your work on the current branch (as often as you like)
 
-  python ci/save_project.py "Add search agent" --main
+  python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Add search agent" --main
       save your work and also update {m} to match your branch
 
-  python ci/save_project.py
+  python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py
       save with the default message: "{config.DEFAULT_COMMIT_MESSAGE}"
 
-  uv run python ci/save_project.py "..."
+  uv run python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "..."
       the same, inside a uv project (on macOS use python3 if python isn't found)
 
 about --main:
@@ -114,9 +116,9 @@ if there is a conflict:
   2. run the command the script printed:
        git add . && git rebase --continue    (conflict on this branch)
        git add . && git commit               (conflict while merging {m})
-  3. run python ci/save_project.py again to upload
+  3. run python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py again to upload
 
-to create a new branch, see: python ci/create_branch.py --help
+to create a new branch, see: python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py --help
 """
 
 
@@ -145,7 +147,7 @@ def main() -> None:
     if branch == config.MAIN_BRANCH and config.CONFIRM_ON_MAIN:
         answer = ask(f"You are on '{config.MAIN_BRANCH}'. Save directly to it? [y/N] ")
         if answer.lower() != "y":
-            fail("Cancelled. Create a branch with: python ci/create_branch.py <name>")
+            fail("Cancelled. Create a branch with: python CI_Docker_DEV_GUID_COMMAND/ci/create_branch.py <name>")
 
     blocked = find_blocked_files()
     if blocked:

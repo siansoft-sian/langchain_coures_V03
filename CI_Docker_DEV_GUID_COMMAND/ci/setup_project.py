@@ -10,7 +10,7 @@ Steps:
 Safe to run again at any time: it never overwrites your .env.
 
 Usage:
-    python ci/setup_project.py
+    python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py
 """
 
 import argparse
@@ -50,12 +50,12 @@ what it does:
 It never overwrites your {ENV_FILE}, so it's safe to run again at any time.
 
 examples:
-  python ci/setup_project.py
+  python CI_Docker_DEV_GUID_COMMAND/ci/setup_project.py
       set up the project (on macOS use python3 if python isn't found)
 
 after it finishes:
   1. open {ENV_FILE} and fill in any empty keys
-  2. run the project: uv run main.py
+  2. run the project: uv run src/main.py
 """
 
 
@@ -105,9 +105,9 @@ def main() -> None:
         print(f"✓ Setup done, but these keys in {ENV_FILE} are still empty:")
         for key in missing:
             print(f"    {key}")
-        print(f"  Open {ENV_FILE}, fill them in, then run: uv run main.py")
+        print(f"  Open {ENV_FILE}, fill them in, then run: uv run src/main.py")
     else:
-        print("✓ Setup done. Run the project with: uv run main.py")
+        print("✓ Setup done. Run the project with: uv run src/main.py")
 
 
 if __name__ == "__main__":
