@@ -18,6 +18,7 @@
 
   /* ---------- Feature colors (one per project feature) ---------- */
   --setup: #059669;    /* setup_project.py */
+  --code: #4338ca;     /* src/search_agent/ (the program) */
   --env: #d97706;      /* .env + .env.example */
   --config: #7c3aed;   /* project_config.py */
   --branch: #2563eb;   /* create_branch.py */
@@ -28,6 +29,7 @@
   --ruff: #65a30d;     /* Ruff lint + format */
   --tests: #dc2626;    /* pytest */
   --precommit: #db2777;/* pre-commit hooks */
+  --gitleaks: #854d0e; /* gitleaks secret scan */
   --actions: #334155;  /* GitHub Actions */
 }
 

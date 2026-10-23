@@ -1,6 +1,6 @@
 # Developer guide
 
-A one-page dashboard that shows how to use every part of this project: setup, API keys, settings, Git scripts, uv, Docker, Ruff, tests, commit checks and GitHub Actions. Each feature has its own color, step-by-step instructions and an example.
+A one-page dashboard that shows how to use every part of this project: setup, the project code in `src/search_agent/`, API keys, settings, Git scripts, uv, Docker, Ruff, tests, commit checks, the gitleaks secret scan and GitHub Actions. Each feature has its own color, step-by-step instructions and an example.
 
 ## Open it
 

@@ -25,6 +25,7 @@
 
       <p class="nav-label">Start here</p>
       <a href="#setup"><span class="dot" style="--c: var(--setup)"></span>Setup</a>
+      <a href="#code"><span class="dot" style="--c: var(--code)"></span>Project code</a>
       <a href="#env"><span class="dot" style="--c: var(--env)"></span>API keys (.env)</a>
       <a href="#config"><span class="dot" style="--c: var(--config)"></span>Settings</a>
 
@@ -41,6 +42,7 @@
       <a href="#ruff"><span class="dot" style="--c: var(--ruff)"></span>Ruff</a>
       <a href="#tests"><span class="dot" style="--c: var(--tests)"></span>Tests</a>
       <a href="#precommit"><span class="dot" style="--c: var(--precommit)"></span>Commit checks</a>
+      <a href="#gitleaks"><span class="dot" style="--c: var(--gitleaks)"></span>Secret scan</a>
       <a href="#actions"><span class="dot" style="--c: var(--actions)"></span>GitHub Actions</a>
     </nav>
 
@@ -92,6 +94,7 @@
     <p class="lead">Each feature keeps the same color everywhere in this guide.</p>
     <div class="legend">
       <a href="#setup" style="--c: var(--setup)"><span class="dot"></span>Setup</a>
+      <a href="#code" style="--c: var(--code)"><span class="dot"></span>Project code</a>
       <a href="#env" style="--c: var(--env)"><span class="dot"></span>API keys</a>
       <a href="#config" style="--c: var(--config)"><span class="dot"></span>Settings</a>
       <a href="#branch" style="--c: var(--branch)"><span class="dot"></span>New branch</a>
@@ -102,6 +105,7 @@
       <a href="#ruff" style="--c: var(--ruff)"><span class="dot"></span>Ruff</a>
       <a href="#tests" style="--c: var(--tests)"><span class="dot"></span>Tests</a>
       <a href="#precommit" style="--c: var(--precommit)"><span class="dot"></span>Commit checks</a>
+      <a href="#gitleaks" style="--c: var(--gitleaks)"><span class="dot"></span>Secret scan</a>
       <a href="#actions" style="--c: var(--actions)"><span class="dot"></span>GitHub Actions</a>
     </div>
 
@@ -183,6 +187,13 @@
           <div class="tile">PC</div>
           <a class="btn dark" href="#precommit">how-to</a>
         </div>
+        <div class="course" style="--c: var(--gitleaks)">
+          <h3>Secret scan</h3>
+          <div class="file">.gitleaks.toml</div>
+          <p>Stops API keys reaching GitHub.</p>
+          <div class="tile">GL</div>
+          <a class="btn dark" href="#gitleaks">how-to</a>
+        </div>
         <div class="course" style="--c: var(--actions)">
           <h3>GitHub Actions</h3>
           <div class="file">.github/workflows/check.yml</div>
@@ -200,6 +211,13 @@
           <div class="tile">SET</div>
           <a class="btn dark" href="#setup">how-to</a>
         </div>
+        <div class="course" style="--c: var(--code)">
+          <h3>Project code</h3>
+          <div class="file">src/search_agent/</div>
+          <p>The program itself.</p>
+          <div class="tile">SRC</div>
+          <a class="btn dark" href="#code">how-to</a>
+        </div>
         <div class="course" style="--c: var(--env)">
           <h3>API keys</h3>
           <div class="file">.env · .env.example</div>
@@ -210,7 +228,7 @@
         <div class="course" style="--c: var(--config)">
           <h3>Settings</h3>
           <div class="file">project_config.py</div>
-          <p>Settings for all CI_Docker_DEV_GUID_COMMAND/ci/ scripts.</p>
+          <p>Settings for the Git and Docker scripts.</p>
           <div class="tile">CFG</div>
           <a class="btn dark" href="#config">how-to</a>
         </div>
@@ -256,6 +274,50 @@
           </div>
         </div>
         <p class="tip"><strong>Good to know:</strong> it's safe to run again at any time, because it never overwrites your <code>.env</code>. In VS Code, accept the suggested extensions (Python, Ruff, Docker) so code is formatted when you save.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="code" style="--c: var(--code)">
+      <header class="guide-head">
+        <div class="tile">SRC</div>
+        <div>
+          <p class="eyebrow">Start here</p>
+          <h2>Project code (src/search_agent)</h2>
+          <p>The program lives in one package. Everything outside <code>src/</code> only helps you build, test and ship it.</p>
+        </div>
+        <a class="path" href="../../src/search_agent/">src/search_agent/</a>
+      </header>
+      <div class="guide-body">
+        <div>
+          <h3>How to</h3>
+          <ol class="steps">
+            <li>Run the program: <code>uv run search-agent</code> (or <code>uv run python -m search_agent</code>).</li>
+            <li>The program starts in <code>main()</code> in <code>main.py</code>. API keys are checked in <code>config.py</code>.</li>
+            <li>Add new code as a new file in <code>src/search_agent/</code>, e.g. <code>tools.py</code>.</li>
+            <li>Import it by the package name: <code>from search_agent.tools import ...</code>.</li>
+            <li>Add a test for it in <code>tests/</code>.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Example</h3>
+          <div class="example">
+            <span class="label">src/search_agent/</span>
+            <pre><code>__init__.py   <span class="c"># marks the folder as a package</span>
+__main__.py   <span class="c"># makes "python -m search_agent" work</span>
+config.py     <span class="c"># loads .env, checks the API keys</span>
+main.py       <span class="c"># starting point: main()</span></code></pre>
+          </div>
+          <div class="example">
+            <span class="label">src/search_agent/main.py</span>
+            <pre><code>from search_agent.config import check_env
+
+
+def main() -&gt; None:
+    check_env()
+    print("hello world!")</code></pre>
+          </div>
+        </div>
+        <p class="tip"><strong>Good to know:</strong> <code>uv sync</code> installs the package into <code>.venv</code>, so changes to the code are picked up straight away. The <code>search-agent</code> command is set in <code>[project.scripts]</code> in <code>pyproject.toml</code>. Run <code>uv sync</code> again if you change it.</p>
       </div>
     </section>
 
@@ -331,7 +393,7 @@ IMAGE_NAME = "langchain-coures-v03"
 PORTS = ["8000:8000"]        <span class="c"># for a web API</span></code></pre>
           </div>
         </div>
-        <p class="tip"><strong>Good to know:</strong> to reuse the scripts in another project, copy the <code>CI_Docker_DEV_GUID_COMMAND/ci/</code> folder and <code>project_config.py</code> together.</p>
+        <p class="tip"><strong>Good to know:</strong> to reuse the scripts in another project, copy the <code>CI_Docker_DEV_GUID_COMMAND/</code> folder and <code>project_config.py</code> into its main folder together.</p>
       </div>
     </section>
 
@@ -607,7 +669,7 @@ def test_check_env_passes_when_all_keys_are_set(monkeypatch):
           <div class="example">
             <span class="label">Run them</span>
             <pre><code><span class="p">$</span> uv run pytest
-<span class="o">4 passed in 0.04s</span></code></pre>
+<span class="o">7 passed in 0.03s</span></code></pre>
           </div>
         </div>
         <p class="tip"><strong>Good to know:</strong> tests never use your real keys. <code>monkeypatch</code> sets fake ones just for the test. In VS Code, run them from the Testing panel.</p>
@@ -641,7 +703,7 @@ def test_check_env_passes_when_all_keys_are_set(monkeypatch):
             <pre><code><span class="p">$</span> python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "Add search"
 Detect hardcoded secrets.................<span class="e">Failed</span>
 RuleID:      tavily-api-key
-File:        agent.py
+File:        src/search_agent/agent.py
 Line:        4
 Secret:      REDACTED
 <span class="e">✗ 'git commit -m Add search' failed</span></code></pre>
@@ -658,7 +720,76 @@ ruff format..............................<span class="o">Passed</span>
 <span class="o">✓ Project saved and 'add-search-tool' is up to date on origin.</span></code></pre>
           </div>
         </div>
-        <p class="tip"><strong>Good to know:</strong> gitleaks blocks API keys, tokens and passwords (rules in <code>.gitleaks.toml</code>). If it stops you, move the key to <code>.env</code> and read it with <code>os.getenv("NAME")</code>. For a false alarm, end the line with <code># gitleaks:allow</code>. The checks also block leftover <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> conflict markers and files over 500 KB.</p>
+        <p class="tip"><strong>Good to know:</strong> if gitleaks stops a commit, see <a href="#gitleaks">Secret scan</a> for what to do. The checks also block leftover <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> conflict markers and files over 500 KB.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="gitleaks" style="--c: var(--gitleaks)">
+      <header class="guide-head">
+        <div class="tile">GL</div>
+        <div>
+          <p class="eyebrow">Code quality</p>
+          <h2>Secret scan (gitleaks)</h2>
+          <p>Stops API keys, tokens and passwords from being committed or uploaded to GitHub.</p>
+        </div>
+        <a class="path" href="../../.gitleaks.toml">.gitleaks.toml</a>
+      </header>
+      <div class="guide-body">
+        <div>
+          <h3>How it works</h3>
+          <ol class="steps">
+            <li><strong>Before every commit:</strong> the commit check scans the changes you are committing. It runs by itself.</li>
+            <li><strong>After every push:</strong> GitHub Actions scans every commit in the history.</li>
+            <li>It uses about 200 built-in rules, plus the Tavily and new OpenAI key formats added in <code>.gitleaks.toml</code>.</li>
+            <li>Your <code>.env</code> is never committed, so it is never scanned or uploaded.</li>
+          </ol>
+          <h3>If it stops you</h3>
+          <ol class="steps">
+            <li>Remove the key from the code. Put it in <code>.env</code> and read it with <code>os.getenv("NAME")</code>.</li>
+            <li>Add the name to <code>.env.example</code> and <code>REQUIRED_KEYS</code> (see <a href="#env">API keys</a>).</li>
+            <li>Save again: <code>python CI_Docker_DEV_GUID_COMMAND/ci/save_project.py "..."</code>.</li>
+            <li>False alarm (not a real key)? End the line with <code># gitleaks:allow</code>.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Example</h3>
+          <div class="example">
+            <span class="label">A Tavily key typed into the code</span>
+            <pre><code><span class="p">$</span> git commit -m "Add search"
+Detect hardcoded secrets.................<span class="e">Failed</span>
+Finding:     API = "REDACTED
+RuleID:      tavily-api-key
+File:        src/search_agent/agent.py
+Line:        3
+<span class="e">WRN leaks found: 1</span></code></pre>
+          </div>
+          <div class="example">
+            <span class="label">The fix: read the key from .env</span>
+            <pre><code>import os
+
+API = os.getenv("TAVILY_API_KEY")</code></pre>
+          </div>
+          <div class="example">
+            <span class="label">Run the scans by hand</span>
+            <pre><code><span class="c"># scan your changes (same as the commit check). Stage them first</span>
+<span class="p">$</span> git add -A
+<span class="p">$</span> uv run pre-commit run gitleaks
+
+<span class="c"># scan the whole history (same as GitHub). Needs: brew install gitleaks</span>
+<span class="p">$</span> gitleaks git --config .gitleaks.toml --redact --verbose .
+<span class="o">INF 23 commits scanned.</span>
+<span class="o">INF no leaks found</span></code></pre>
+          </div>
+          <div class="example">
+            <span class="label">Add your own rule to .gitleaks.toml</span>
+            <pre><code>[[rules]]
+id = "my-service-key"
+description = "My service API key"
+regex = '''\bmysvc-[A-Za-z0-9]{32}\b'''
+keywords = ["mysvc-"]</code></pre>
+          </div>
+        </div>
+        <p class="tip"><strong>Important:</strong> if a real key was ever pushed to GitHub, deleting it from the code is not enough, because it stays in the history. Revoke it straight away and make a new one (<a href="https://platform.openai.com/api-keys">OpenAI</a>, <a href="https://app.tavily.com/">Tavily</a>). Then put the new key only in <code>.env</code>.</p>
       </div>
     </section>
 
