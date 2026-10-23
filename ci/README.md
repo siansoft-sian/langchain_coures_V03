@@ -41,6 +41,14 @@ Save your work (as often as you like):
 python ci/save_project.py "Add search agent"
 ```
 
+Save your work and also update `main` to match your branch:
+
+```bash
+python ci/save_project.py "Add search agent" --main
+```
+
+`--main` only moves `main` forward. If `main` has commits your branch doesn't have, it stops and tells you to merge `main` into your branch first, so nothing on `main` is ever overwritten.
+
 In a uv project you can also use `uv run python ci/save_project.py "..."`. On macOS, use `python3` if `python` isn't found.
 
 Add `--help` to either script to see its options.
@@ -55,8 +63,9 @@ If someone else changed the same lines, the script stops and tells you what to d
 
 ## Cheat sheets
 
-In the [Git_Gh_UV_Commands](Git_Gh_UV_Commands/) folder:
+In the [Git_Gh_UV_ENV_COMMANDS](Git_Gh_UV_ENV_COMMANDS/) folder:
 
-- [GIT_COMMANDS.md](Git_Gh_UV_Commands/GIT_COMMANDS.md): Git commands and step-by-step recipes
-- [GH_COMMANDS.md](Git_Gh_UV_Commands/GH_COMMANDS.md): GitHub CLI (`gh`) commands
-- [UV_COMMANDS.md](Git_Gh_UV_Commands/UV_COMMANDS.md): uv commands
+- [GIT_COMMANDS.md](Git_Gh_UV_ENV_COMMANDS/GIT_COMMANDS.md): Git commands and step-by-step recipes
+- [GH_COMMANDS.md](Git_Gh_UV_ENV_COMMANDS/GH_COMMANDS.md): GitHub CLI (`gh`) commands
+- [UV_COMMANDS.md](Git_Gh_UV_ENV_COMMANDS/UV_COMMANDS.md): uv commands
+- [ENV_COMMAND.md](Git_Gh_UV_ENV_COMMANDS/ENV_COMMAND.md): activate and deactivate the virtual environment
