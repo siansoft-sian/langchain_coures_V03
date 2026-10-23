@@ -27,6 +27,7 @@ ci/
 docker/
 project_config.py
 tests/
+dev_guide/
 .github/
 .pre-commit-config.yaml
 docker-compose.yml

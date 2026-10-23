@@ -2,6 +2,8 @@
 
 A search agent built with [LangChain](https://python.langchain.com/), using OpenAI models and [Tavily](https://tavily.com/) web search.
 
+Open [dev_guide/index.html](dev_guide/index.html) in a browser for a visual guide to every feature, with steps and examples.
+
 ## Setup
 
 You need [uv](https://docs.astral.sh/uv/getting-started/installation/) and git. uv installs the right Python version for you.
@@ -54,6 +56,7 @@ GitHub runs the lint, the tests and a Docker build on every push (see the **Acti
 | [ci/](ci/README.md) | Scripts for setup, branches and saving work to GitHub |
 | [docker/](docker/README.md) | Scripts to build and run the project in Docker |
 | [docker-compose.yml](docker-compose.yml) | Runs the app (and later a database, etc.) with `docker compose up` |
+| [dev_guide/](dev_guide/README.md) | Visual developer guide (open `index.html` in a browser) |
 | [tests/](tests/) | Tests, run with `uv run pytest` |
 | [.github/workflows/check.yml](.github/workflows/check.yml) | Lint, tests and Docker build on GitHub after every push |
 | [.pre-commit-config.yaml](.pre-commit-config.yaml) | Checks that run before every commit |
