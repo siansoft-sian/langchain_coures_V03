@@ -7,8 +7,7 @@ Usage:
 
 import argparse
 
-import config
-from docker_helpers import DOCKER_DIR, check_docker_running, docker, go_to_project_root, step
+from docker_helpers import DOCKER_DIR, check_docker_running, config, docker, go_to_project_root, step
 
 
 def build_help_epilog() -> str:
@@ -26,7 +25,7 @@ examples:
   python docker/build_image.py --no-cache
       rebuild every step, e.g. after a strange error
 
-settings (edit in docker/config.py, current values shown):
+settings (edit in project_config.py, current values shown):
   IMAGE_NAME      {config.IMAGE_NAME!r}
   TAG             {config.TAG!r}
   PYTHON_VERSION  {config.PYTHON_VERSION!r}

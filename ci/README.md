@@ -1,6 +1,6 @@
 # CI scripts
 
-Two reusable Python scripts for everyday Git work. They work in any project on macOS, Linux and Windows. Copy this `ci/` folder in and edit [config.py](config.py).
+Two reusable Python scripts for everyday Git work. They work in any project on macOS, Linux and Windows. Copy this `ci/` folder and [project_config.py](../project_config.py) into the project's main folder, then edit `project_config.py`.
 
 They use only Python's built-in modules (Python 3.9+), so there's nothing to install.
 
@@ -8,12 +8,12 @@ They use only Python's built-in modules (Python 3.9+), so there's nothing to ins
 | --- | --- |
 | [create_branch.py](create_branch.py) | Gets the latest `main`, creates a new branch from it, and uploads the branch to GitHub |
 | [save_project.py](save_project.py) | Commits all changes, downloads other people's changes to the branch, and uploads everything |
-| [config.py](config.py) | Your settings: the only file you need to edit |
+| [../project_config.py](../project_config.py) | Your settings (shared with the `docker/` scripts): the only file you need to edit |
 | [git_helpers.py](git_helpers.py) | Shared helper code used by both scripts (no need to edit) |
 
 ## Settings
 
-Open `ci/config.py` and check the values:
+Open [project_config.py](../project_config.py) in the main folder and check the Git values:
 
 | Setting | Meaning | Default |
 | --- | --- | --- |

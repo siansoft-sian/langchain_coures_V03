@@ -8,6 +8,10 @@ from pathlib import Path
 DOCKER_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = DOCKER_DIR.parent
 
+# Load the shared settings file (project_config.py) from the project's main folder.
+sys.path.insert(0, str(PROJECT_ROOT))
+import project_config as config  # noqa: E402
+
 
 def fail(message: str) -> None:
     """Print an error and stop the script."""

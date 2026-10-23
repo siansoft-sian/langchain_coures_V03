@@ -3,6 +3,11 @@
 import os
 import subprocess
 import sys
+from pathlib import Path
+
+# Load the shared settings file (project_config.py) from the project's main folder.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import project_config as config  # noqa: E402
 
 
 def fail(message: str) -> None:
@@ -52,7 +57,7 @@ def go_to_repo_root() -> None:
 
 def check_remote(remote: str) -> None:
     if not git_ok("remote", "get-url", remote):
-        fail(f"Remote '{remote}' not found. Check REMOTE in ci/config.py.")
+        fail(f"Remote '{remote}' not found. Check REMOTE in project_config.py.")
 
 
 def local_branch_exists(branch: str) -> bool:

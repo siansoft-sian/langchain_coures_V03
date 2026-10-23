@@ -17,10 +17,10 @@ import argparse
 import fnmatch
 import os
 
-import config
 from git_helpers import (
     ask,
     check_remote,
+    config,
     fail,
     git,
     git_ok,
@@ -54,7 +54,7 @@ def update_main(branch: str) -> None:
         if not git_ok("merge-base", "--is-ancestor", remote_main, "HEAD"):
             fail(
                 f"'{main_branch}' has changes that '{branch}' doesn't have, so it can't be updated cleanly.\n"
-                f"  Bring them in first with: git merge {remote_main}  (or set SYNC_WITH_MAIN = True in ci/config.py),\n"
+                f"  Bring them in first with: git merge {remote_main}  (or set SYNC_WITH_MAIN = True in project_config.py),\n"
                 f"  then run this script again with --main."
             )
 
@@ -97,7 +97,7 @@ about --main:
   have, the script stops and tells you to merge {m} into your branch first,
   so nothing on {m} is ever overwritten.
 
-settings (edit in ci/config.py, current values shown):
+settings (edit in project_config.py, current values shown):
   REMOTE                  {config.REMOTE!r:<24} GitHub remote name (git remote -v)
   MAIN_BRANCH             {config.MAIN_BRANCH!r:<24} branch new branches start from
   DEFAULT_COMMIT_MESSAGE  used when you don't give a message

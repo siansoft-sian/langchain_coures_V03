@@ -11,9 +11,8 @@ import argparse
 import os
 import sys
 
-import config
 from build_image import build
-from docker_helpers import check_docker_running, docker, fail, go_to_project_root, image_exists, step
+from docker_helpers import check_docker_running, config, docker, fail, go_to_project_root, image_exists, step
 
 
 def build_help_epilog() -> str:
@@ -39,7 +38,7 @@ examples:
   python docker/run_container.py python main.py
       run any command inside the container
 
-settings (edit in docker/config.py, current values shown):
+settings (edit in project_config.py, current values shown):
   IMAGE_NAME       {config.IMAGE_NAME!r}
   TAG              {config.TAG!r}
   ENV_FILE         {config.ENV_FILE!r:<20} API keys passed in at start (never built into the image)

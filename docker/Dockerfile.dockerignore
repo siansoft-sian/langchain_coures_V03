@@ -25,3 +25,4 @@ __pycache__/
 # Not needed inside the image
 ci/
 docker/
+project_config.py

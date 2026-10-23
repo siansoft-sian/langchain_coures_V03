@@ -7,10 +7,10 @@ Usage:
 
 import argparse
 
-import config
 from git_helpers import (
     ask,
     check_remote,
+    config,
     fail,
     git,
     git_ok,
@@ -45,7 +45,7 @@ examples:
   uv run python ci/create_branch.py my-new-feature
       the same, inside a uv project (on macOS use python3 if python isn't found)
 
-settings (edit in ci/config.py, current values shown):
+settings (edit in project_config.py, current values shown):
   REMOTE         {config.REMOTE!r:<18} GitHub remote name (git remote -v)
   MAIN_BRANCH    {config.MAIN_BRANCH!r:<18} branch new branches start from
   BRANCH_PREFIX  {prefix!r:<18} added before the name, e.g. "feature/" -> feature/login
@@ -53,7 +53,7 @@ settings (edit in ci/config.py, current values shown):
 if it stops:
   "already exists"           pick another name, or switch to it: git switch <branch>
   "not a valid branch name"  avoid spaces and characters like ~ ^ : ? * [
-  {main_not_found:<26} check MAIN_BRANCH in ci/config.py
+  {main_not_found:<26} check MAIN_BRANCH in project_config.py
   pull fails                 your local {m} has commits of its own; save them on
                              a branch first, then run this script again
 
@@ -87,7 +87,7 @@ def main() -> None:
         fail(f"'{branch}' is not a valid branch name.")
     check_remote(config.REMOTE)
     if not local_branch_exists(config.MAIN_BRANCH):
-        fail(f"Branch '{config.MAIN_BRANCH}' not found. Check MAIN_BRANCH in ci/config.py.")
+        fail(f"Branch '{config.MAIN_BRANCH}' not found. Check MAIN_BRANCH in project_config.py.")
     if local_branch_exists(branch):
         fail(f"Branch '{branch}' already exists locally. Switch to it with: git switch {branch}")
     if remote_branch_exists(config.REMOTE, branch):
