@@ -8,6 +8,7 @@ A quick reference for the [uv](https://docs.astral.sh/uv/) commands you'll use m
 |---|---|
 | `uv init` | Create a new project (`pyproject.toml`, `.python-version`, etc.) |
 | `uv init --package my-app` | Create a project with a `src/` package layout |
+| `uv init --no-package` | Create a project without a `src/` package only with main.py
 | `uv sync` | Install everything in `pyproject.toml` / `uv.lock` into `.venv` |
 | `uv sync --upgrade` | Sync and upgrade all packages to the newest allowed versions |
 
